@@ -71,7 +71,7 @@ public class MyAspect {
     /**
      * 环绕通知:
      * 通知方法的第一个参数必须是ProceedingJoinPoint类型。
-     * 在通知正文中，对ProceedingJoinPoint调用proceed（）将导致底层方法执行。around通知返回的值是方法调用方看到的返回值。
+     * 在通知正文中，对ProceedingJoinPoint调用proceed()将导致底层方法执行。around通知返回的值是方法调用方看到的返回值。
      */
     @Around("pt1()")
     public Object AroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
