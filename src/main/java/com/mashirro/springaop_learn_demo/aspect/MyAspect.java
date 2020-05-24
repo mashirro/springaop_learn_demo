@@ -29,6 +29,16 @@ public class MyAspect {
      */
     @Before("pt1()")
     public void beforeAdvice(JoinPoint joinPoint) {
+        //getTarget()：返回目标对象(被代理对象)
+        Object target = joinPoint.getTarget();
+        System.out.println("target:" + target + "---targetClassName:" + target.getClass().getName());
+        //getThis()：返回代理对象
+        Object aThis = joinPoint.getThis();
+        System.out.println("this:" + aThis + "---thisClassName:" + aThis.getClass().getName());
+
+        //target和aThis不是同一个对象,上面内存地址之所以相同,是因为代理对象调用了目标对象的toString方法
+        System.out.println(target.equals(aThis));
+
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
         System.out.println("methodName:" + methodName + "----args:" + Arrays.asList(args));
@@ -43,9 +53,9 @@ public class MyAspect {
      */
     @AfterReturning(pointcut = "pt1()", returning = "retVal")
     public void afterReturningAdvice(JoinPoint joinPoint, Object retVal) {
-        String methodName = joinPoint.getSignature().getName();
-        Object[] args = joinPoint.getArgs();
-        System.out.println("methodName:" + methodName + "----args:" + Arrays.asList(args));
+        //String methodName = joinPoint.getSignature().getName();
+        //Object[] args = joinPoint.getArgs();
+        //System.out.println("methodName:" + methodName + "----args:" + Arrays.asList(args));
         System.out.println(retVal);
         System.out.println("afterReturningAdvice...");
     }
@@ -75,10 +85,9 @@ public class MyAspect {
      */
     @Around("pt1()")
     public Object AroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
-        //String methodName = pjp.getSignature().getName();
-        //进行操作...
+        //do something...
         Object retVal = pjp.proceed();
-        //进行操作..
+        //do something...
         return retVal;
     }
 }
