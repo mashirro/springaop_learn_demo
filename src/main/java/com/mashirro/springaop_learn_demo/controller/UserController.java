@@ -18,6 +18,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 测试入口:http://localhost:8080/user/list
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public Result getUsers() {
